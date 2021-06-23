@@ -16,7 +16,7 @@ const CommonHead: FunctionComponent<Props> = ({
         lang: 'ko',
       }}
       title={title}
-      titleTemplate={`%s | Han Jungwoo`}
+      titleTemplate={`%s`}
       meta={[
         {
           name: `description`,

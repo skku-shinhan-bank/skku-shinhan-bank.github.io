@@ -1,6 +1,10 @@
 import * as React from "react"
 import CommonHead from '../lib/CommonHead';
 
+import HomePage from '../views/component/page/HomePage';
+
+import '../views/styles/global.scss';
+
 // markup
 const IndexPage = () => {
   return (
@@ -9,9 +13,7 @@ const IndexPage = () => {
       title="SKKU Shinhan Bank Team"
       description="SKKU Shinhan Bank Team"
     />
-    <main>
-      <h1>SKKU Shinhan Bank Team</h1>
-    </main>
+    <HomePage />
     </>
   )
 }
