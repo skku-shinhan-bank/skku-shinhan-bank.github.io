@@ -1,0 +1,21 @@
+.comment-chat-comp {
+  position: relative;
+  padding: 40px;
+  background: #d7e4ed;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent #d7e4ed;
+    display: block;
+    width: 0;
+    z-index: 1;
+    right: -15px;
+    top: 45px;
+  }
+}
