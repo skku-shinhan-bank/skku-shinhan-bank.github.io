@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import ReviewChat from '../../display/ReviewChat';
 import CommentChat from '../../display/CommentChat';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './index.scss';
 
@@ -18,10 +19,14 @@ interface Props {
     comment: string;
   }[];
   onClickSendButton: () => void;
+  isInputDisabled?: boolean;
+  isSendButtonLoading?: boolean;
+  isNewChattingLoading?: boolean;
 }
 
 const HomePage: FunctionComponent<Props> = ({
   chatting, onClickSendButton, input, onChangeInput,
+  isInputDisabled = false, isSendButtonLoading = false, isNewChattingLoading = false,
 }) => {
   return (
     <>
@@ -38,6 +43,7 @@ const HomePage: FunctionComponent<Props> = ({
               fullWidth
               value={input}
               onChange={onChangeInput}
+              disabled={isInputDisabled}
             />
           </div>
           <div className="button-wrapper">
@@ -45,11 +51,19 @@ const HomePage: FunctionComponent<Props> = ({
               variant="contained"
               color="primary"
               onClick={onClickSendButton}
+              disabled={isSendButtonLoading}
             >
               <SendIcon />
             </Button>
           </div>
         </div>
+        {
+          isNewChattingLoading && (
+            <div className="new-char-pregress-container">
+              <CircularProgress />
+            </div>
+          )
+        }
         <div className="chat-container">
           {
             chatting.map((chat) => (

@@ -9,7 +9,7 @@
     > .input-form {
       display: flex;
       align-items: center;
-      margin-top: 20px;
+      margin-top: 60px;
       > .input-wrapper {
         flex: 7;
       }
@@ -20,7 +20,14 @@
       }
     }
 
+    > .new-char-pregress-container {
+      padding: 40px 0;
+      display: flex;
+      justify-content: center;
+    }
+
     > .chat-container {
+      margin-top: 40px;
       > .chat-wrapper {
         padding: 20px 0;
 
