@@ -1,3 +1,3 @@
 export const getPSHHost = () => {
-  return 'http://127.0.0.1:5000';
+  return 'http://3.37.134.141:5000';
 };
