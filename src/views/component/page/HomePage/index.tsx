@@ -17,6 +17,7 @@ interface Props {
   chatting: {
     review: string;
     comment: string;
+    wrtieTime: string;
   }[];
   onClickSendButton: () => void;
   isInputDisabled?: boolean;
@@ -33,8 +34,8 @@ const HomePage: FunctionComponent<Props> = ({
     <BasicAppBar />
     <main className="home-page-comp">
       <div className="center-page-content">
-        <Typography variant="h5" style={{ textAlign: 'center', marginTop: '30px' }}>
-          SKKU 산학협력 프로젝트 Shinhan Bank Team
+        <Typography variant="h4" style={{ textAlign: 'center', marginTop: '30px' }}>
+          SKKU Shinhan Bank Team
         </Typography>
         <div className="input-form">
           <div className="input-wrapper">
@@ -44,6 +45,8 @@ const HomePage: FunctionComponent<Props> = ({
               value={input}
               onChange={onChangeInput}
               disabled={isInputDisabled}
+              placeholder="신한은행 앱 리뷰를 입력해주세요."
+              multiline
             />
           </div>
           <div className="button-wrapper">
@@ -70,13 +73,10 @@ const HomePage: FunctionComponent<Props> = ({
               <div className="chat-wrapper">
                 <div className="review">
                   <ReviewChat
-                    text={chat.review}
+                    review={chat.review}
+                    comment={chat.comment}
+                    time={chat.wrtieTime}
                   />
-                </div>
-                <div className="comment">
-                  <CommentChat
-                    text={chat.comment}
-                    />
                 </div>
               </div>
             ))

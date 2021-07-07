@@ -10,7 +10,11 @@ import '../views/styles/global.scss';
 
 // markup
 const IndexPage = () => {
-  const [chattings, setChattings] = useState<Chatting[]>([])
+  const [chattings, setChattings] = useState<{
+    review: string;
+    comment: string;
+    wrtieTime: string;
+  }[]>([])
   const [input, setInput] = React.useState('');
   const [isReviewRegistering, setIsReviewRegistering] = useState(false);
 
@@ -25,8 +29,15 @@ const IndexPage = () => {
     
     try {
       const reviewChat = await registerReview(newReview);
+
+      const today = new Date();
+
+      const dateReviewChat = {
+        ...reviewChat,
+        wrtieTime: `${today.getFullYear()} / ${today.getMonth() + 1} / ${today.getDate()}`
+      }
   
-      const newChattings = [reviewChat, ...chattings]
+      const newChattings = [dateReviewChat, ...chattings]
   
       setChattings(newChattings);
       setInput('');

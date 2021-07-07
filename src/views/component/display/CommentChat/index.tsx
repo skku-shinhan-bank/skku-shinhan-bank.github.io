@@ -1,5 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
+import Typography from '@material-ui/core/Typography';
+
+
 import './index.scss';
 
 interface Props {
@@ -12,7 +15,11 @@ const CommentChat: FunctionComponent<Props> = ({
   
   return (
     <div className="comment-chat-comp">
-      {text}
+      <div className="speech-bubble">
+        <Typography>
+          {text}
+        </Typography>
+      </div>
     </div>
   )
 };

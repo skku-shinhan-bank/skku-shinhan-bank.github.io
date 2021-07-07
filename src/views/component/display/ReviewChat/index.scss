@@ -1,22 +1,46 @@
 .review-chat-comp {
-  position: relative;
-  padding: 40px;
-  background: #eeeeee;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  
-
-  &:after {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 15px 15px 15px 0;
-    border-color: transparent #eeeeee;
-    display: block;
-    width: 0;
-    z-index: 1;
-    left: -15px;
-    top: 30px;
+  .user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
   }
+  .time {
+    font-size: 14px;
+    color: #999999;
+    padding: 8px 4px;
+  }
+  .review {
+    padding: 16px 8px;
+  }
+  .avatar {
+    border-top: 1px solid #dddddd;
+    padding: 20px 0;
+  }
+  .comment {
+    padding: 0 8px 16px;
+
+  }
+  // padding-left: 12px;
+  // > .speech-bubble {
+  //   position: relative;
+  //   padding: 40px;
+  //   background: #eeeeee;
+  //   -webkit-border-radius: 10px;
+  //   -moz-border-radius: 10px;
+  //   border-radius: 10px;
+    
+  
+  //   &:after {
+  //     content: '';
+  //     position: absolute;
+  //     border-style: solid;
+  //     border-width: 15px 15px 15px 0;
+  //     border-color: transparent #eeeeee;
+  //     display: block;
+  //     width: 0;
+  //     z-index: 1;
+  //     left: -15px;
+  //     top: 30px;
+  //   }
+  // }
 }
