@@ -39,7 +39,7 @@ const IndexRoute = () => {
     const dateReviewChat = {
       review: newReview,
       comment: '',
-      writeTime: `${today.getFullYear()} / ${today.getMonth() + 1} / ${today.getDate()}`,
+      writeTime: `${today.getFullYear()}/${getTwoPlaceString(today.getMonth() + 1)}/${getTwoPlaceString(today.getDate())} ${getTwoPlaceString(today.getHours())}:${getTwoPlaceString(today.getMinutes())}`,
     };
 
     if (reviewChat) {
@@ -72,6 +72,13 @@ const IndexRoute = () => {
     />
     </>
   )
+}
+
+function getTwoPlaceString(num: number) {
+  if (num < 9) {
+    return `0${num}`;
+  }
+  return `${num}`;
 }
 
 export default IndexRoute;
