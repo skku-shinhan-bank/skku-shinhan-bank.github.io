@@ -1,13 +1,12 @@
 import React, { ChangeEvent, FunctionComponent } from 'react';
 
-import BasicAppBar from '../../app-bar/BasicAppBar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import ReviewChat from '../../display/ReviewChat';
-import CommentChat from '../../display/CommentChat';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CommonAppBar from '../../../../lib/CommonAppBar';
 
 import './index.scss';
 
@@ -17,7 +16,7 @@ interface Props {
   chatting: {
     review: string;
     comment: string;
-    wrtieTime: string;
+    writeTime: string;
   }[];
   onClickSendButton: () => void;
   isInputDisabled?: boolean;
@@ -31,7 +30,7 @@ const HomePage: FunctionComponent<Props> = ({
 }) => {
   return (
     <>
-    <BasicAppBar />
+    <CommonAppBar />
     <main className="home-page-comp">
       <div className="center-page-content">
         <Typography variant="h4" style={{ textAlign: 'center', marginTop: '30px' }}>
@@ -75,7 +74,7 @@ const HomePage: FunctionComponent<Props> = ({
                   <ReviewChat
                     review={chat.review}
                     comment={chat.comment}
-                    time={chat.wrtieTime}
+                    time={chat.writeTime}
                   />
                 </div>
               </div>

@@ -1,7 +1,6 @@
 import * as React from "react"
 import { useState } from "react";
 import CommonHead from '../lib/CommonHead';
-import { Chatting } from "../lib/model/ReviewChat";
 import { registerReview } from "../lib/psh-sevice/register-review";
 
 import HomePage from '../views/component/page/HomePage';
@@ -9,11 +8,11 @@ import HomePage from '../views/component/page/HomePage';
 import '../views/styles/global.scss';
 
 // markup
-const IndexPage = () => {
+const IndexRoute = () => {
   const [chattings, setChattings] = useState<{
     review: string;
     comment: string;
-    wrtieTime: string;
+    writeTime: string;
   }[]>([])
   const [input, setInput] = React.useState('');
   const [isReviewRegistering, setIsReviewRegistering] = useState(false);
@@ -27,24 +26,32 @@ const IndexPage = () => {
 
     const newReview = input;
     
+    let reviewChat = null
+
     try {
-      const reviewChat = await registerReview(newReview);
-
-      const today = new Date();
-
-      const dateReviewChat = {
-        ...reviewChat,
-        wrtieTime: `${today.getFullYear()} / ${today.getMonth() + 1} / ${today.getDate()}`
-      }
-  
-      const newChattings = [dateReviewChat, ...chattings]
-  
-      setChattings(newChattings);
-      setInput('');
+      reviewChat = await registerReview(newReview);
     } catch (error) {
       console.error(error);
-      alert('리뷰 등록에 실패했습니다.')
     }
+
+    const today = new Date();
+
+    const dateReviewChat = {
+      review: newReview,
+      comment: '',
+      writeTime: `${today.getFullYear()} / ${today.getMonth() + 1} / ${today.getDate()}`,
+    };
+
+    if (reviewChat) {
+      dateReviewChat.comment = reviewChat.comment;
+    } else {
+      dateReviewChat.comment = '[리뷰 등록 실패]';
+    }
+
+    const newChattings = [dateReviewChat, ...chattings]
+
+    setChattings(newChattings);
+    setInput('');
     setIsReviewRegistering(false)
   }
 
@@ -67,4 +74,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default IndexRoute;
