@@ -26,29 +26,19 @@ const IndexRoute = () => {
 
     const newReview = input;
     
-    let reviewChat = null
+    let newChatting = {
+      review: newReview,
+      comment: '[리뷰 등록 실패]',
+      writeTime: '',
+    };
 
     try {
-      reviewChat = await registerReview(newReview);
+      newChatting = await registerReview(newReview);
     } catch (error) {
       console.error(error);
     }
 
-    const today = new Date();
-
-    const dateReviewChat = {
-      review: newReview,
-      comment: '',
-      writeTime: `${today.getFullYear()}/${getTwoPlaceString(today.getMonth() + 1)}/${getTwoPlaceString(today.getDate())} ${getTwoPlaceString(today.getHours())}:${getTwoPlaceString(today.getMinutes())}`,
-    };
-
-    if (reviewChat) {
-      dateReviewChat.comment = reviewChat.comment;
-    } else {
-      dateReviewChat.comment = '[리뷰 등록 실패]';
-    }
-
-    const newChattings = [dateReviewChat, ...chattings]
+    const newChattings = [newChatting, ...chattings]
 
     setChattings(newChattings);
     setInput('');

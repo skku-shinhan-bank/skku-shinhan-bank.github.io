@@ -2,11 +2,17 @@ import RequestSender from '../request-sender';
 import { Chatting } from '../model/ReviewChat';
 import { getPSHHost } from '../util';
 
-export const registerReview = async (review: string) => {
+interface ResponseBody {
+  comment: string;
+  review: string;
+  write_time: string;
+  total_issue_info: number[];
+}
 
+export const registerReview = async (review: string): Promise<Chatting> => {
   const url = `${getPSHHost()}/reviews`;
 
-  const { status, body } = await RequestSender.sendPostRequest<Chatting>({
+  const { status, body } = await RequestSender.sendPostRequest<ResponseBody>({
     url,
     body: {
       review,
@@ -17,5 +23,9 @@ export const registerReview = async (review: string) => {
     throw new Error();
   }
 
-  return body;
+  return {
+    review: body.review,
+    comment: body.comment,
+    writeTime: body.write_time
+  };
 };
