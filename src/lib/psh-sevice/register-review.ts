@@ -23,8 +23,6 @@ export const registerReview = async (review: string): Promise<Chatting> => {
     throw new Error();
   }
 
-  console.log(body)
-
   return {
     review: body.review,
     comment: body.comment,
