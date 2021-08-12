@@ -1,3 +1,3 @@
 export const getPSHHost = () => {
-  return 'http://34.64.103.99';
+  return 'http://localhost:5000';
 };
