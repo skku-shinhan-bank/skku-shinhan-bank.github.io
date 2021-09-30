@@ -21,6 +21,11 @@
     "@devexpress/dx-react-core": "^2.7.6",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@nivo/bar": "^0.73.1",
+    "@nivo/core": "^0.73.0",
+    "@nivo/line": "^0.73.0",
+    "@nivo/pie": "^0.73.0",
+    "@nivo/sunburst": "^0.73.0",
     "gatsby": "^3.6.2",
     "gatsby-plugin-image": "^1.8.0",
     "gatsby-plugin-manifest": "^3.8.0",
@@ -30,8 +35,8 @@
     "gatsby-plugin-sitemap": "^4.4.0",
     "gatsby-source-filesystem": "^3.8.0",
     "gatsby-transformer-sharp": "^3.8.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-helmet": "^6.1.0",
     "sass": "^1.35.1"
   },
@@ -41,5 +46,9 @@
     "gatsby-plugin-typescript": "^3.8.0",
     "gh-pages": "^3.2.3",
     "git": "^0.1.5"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/skku-shinhan-bank/skku-shinhan-bank.github.io.git",
+  "author": "HanJungwoo1102 <ajtwlswjddnv1102@gmail.com>",
+  "license": "MIT"
 }
