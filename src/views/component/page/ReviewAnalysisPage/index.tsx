@@ -77,24 +77,28 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
     <main className="reviews-analysis-page-comp">
       <div className="center-page-content">
         <div className="paper-wrapper">
-          <Paper style={{ padding: '40px' }}>
-            <Typography variant="h4">{keywordByMonthData.title}</Typography>
-            <Typography variant="subtitle1">{keywordByMonthData.description}</Typography>
-            <div className="chart-wrapper">
-              <LineChart
-                data={lineChartDataOfKeywordMonth}
-              />
+          <Paper>
+            <div className="contents-container">
+              <Typography variant="h4">{keywordByMonthData.title}</Typography>
+              <Typography variant="subtitle1">{keywordByMonthData.description}</Typography>
+              <div className="chart-wrapper">
+                <LineChart
+                  data={lineChartDataOfKeywordMonth}
+                />
+              </div>
             </div>
           </Paper>
         </div>
         <div className="paper-wrapper">
-          <Paper style={{ padding: '40px' }}>
-            <Typography variant="h4">{keywordRankData.title}</Typography>
-            <Typography variant="subtitle1">{keywordRankData.description}</Typography>
-            <div className="chart-wrapper">
-              <PieChart
-                data={pieChartDataOfKeywordRank}
-              />
+          <Paper>
+            <div className="contents-container">
+              <Typography variant="h4">{keywordRankData.title}</Typography>
+              <Typography variant="subtitle1">{keywordRankData.description}</Typography>
+              <div className="chart-wrapper">
+                <PieChart
+                  data={pieChartDataOfKeywordRank}
+                />
+              </div>
             </div>
           </Paper>
         </div>
