@@ -11,61 +11,62 @@ const LineChart: FunctionComponent<Props> = ({ data /* see data tab */ }) => (
         data={data}
         margin={{ top: 50, right: 160, bottom: 50, left: 60 }}
         xScale={{ type: 'linear' }}
-        yScale={{ type: 'linear', stacked: true, min: 0, max: 2500 }}
+        yScale={{ type: 'linear' }}
+        // yScale={{ type: 'linear', stacked: true, min: 0, max: 2500 }}
         yFormat=" >-.2f"
-        curve="monotoneX"
+        // curve="monotoneX"
         axisTop={null}
-        axisRight={{
-            tickValues: [
-                0,
-                500,
-                1000,
-                1500,
-                2000,
-                2500
-            ],
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            format: '.2s',
-            legend: '',
-            legendOffset: 0
-        }}
-        axisBottom={{
-            tickValues: [
-                0,
-                20,
-                40,
-                60,
-                80,
-                100,
-                120
-            ],
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            format: '.2f',
-            legend: 'price',
-            legendOffset: 36,
-            legendPosition: 'middle'
-        }}
-        axisLeft={{
-            tickValues: [
-                0,
-                500,
-                1000,
-                1500,
-                2000,
-                2500
-            ],
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            format: '.2s',
-            legend: 'volume',
-            legendOffset: -40,
-            legendPosition: 'middle'
-        }}
+        // axisRight={{
+        //     tickValues: [
+        //         0,
+        //         500,
+        //         1000,
+        //         1500,
+        //         2000,
+        //         2500
+        //     ],
+        //     tickSize: 5,
+        //     tickPadding: 5,
+        //     tickRotation: 0,
+        //     format: '.2s',
+        //     legend: '',
+        //     legendOffset: 0
+        // }}
+        // axisBottom={{
+        //     tickValues: [
+        //         0,
+        //         20,
+        //         40,
+        //         60,
+        //         80,
+        //         100,
+        //         120
+        //     ],
+        //     tickSize: 5,
+        //     tickPadding: 5,
+        //     tickRotation: 0,
+        //     format: '.2f',
+        //     legend: 'price',
+        //     legendOffset: 36,
+        //     legendPosition: 'middle'
+        // }}
+        // axisLeft={{
+        //     tickValues: [
+        //         0,
+        //         500,
+        //         1000,
+        //         1500,
+        //         2000,
+        //         2500
+        //     ],
+        //     tickSize: 5,
+        //     tickPadding: 5,
+        //     tickRotation: 0,
+        //     format: '.2s',
+        //     legend: 'volume',
+        //     legendOffset: -40,
+        //     legendPosition: 'middle'
+        // }}
         enableGridX={false}
         colors={{ scheme: 'spectral' }}
         lineWidth={1}
