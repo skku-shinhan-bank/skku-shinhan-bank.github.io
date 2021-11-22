@@ -24,19 +24,14 @@ import PieChart from '../../chart/PieChart';
 import BarChart from '../../chart/BarChart';
 import SunburstChart from '../../chart/SunburstChart';
 import { keywordRankData } from '../../../../lib/data/keyword-rank';
-import { keywordByMonthData } from '../../../../lib/data/keyword-by-month';
-import { Typography } from '@material-ui/core';
+import { issueByMonthData } from '../../../../lib/data/issue-by-month';
+import { issueByWeekData } from '../../../../lib/data/issue-by-week';
+import { meaningfulKeywordData } from '../../../../lib/data/meaningful-keyword';
+import { risingKeywordData } from '../../../../lib/data/rising-keyword';
 
-const data = [
-  { argument: 'arg 1', value: 12 },
-  { argument: 'arg 2', value: 7 },
-  { argument: 'arg 3', value: 7 },
-  { argument: 'arg 4', value: 7 },
-  { argument: 'arg 5', value: 6 },
-  { argument: 'arg 6', value: 5 },
-  { argument: 'arg 7', value: 2 },
-  { argument: 'arg 8', value: 55 },
-];
+import { Typography } from '@material-ui/core';
+import TableChart from '../../chart/TableChart';
+import { keywordRankRelatedData } from '../../../../lib/data/keyword-related';
 
 const ReviewsAnalysisPage: FunctionComponent = () => {
   const pieChartDataOfKeywordRank = keywordRankData.data.map((data) => ({
@@ -45,29 +40,67 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
     value: data.y,
   }));
 
-  const initialLineDataOfKeywordMonth = [{
-    id: 'issue 0',
-    data: [],
-  }, {
-    id: 'issue 1',
-    data: [],
-  }, {
-    id: 'issue 2',
-    data: [],
-  }, {
-    id: 'issue 3',
-    data: [],
-  }, {
-    id: 'issue 4',
-    data: [],
-  }];
-
-  const lineChartDataOfKeywordMonth = keywordByMonthData.lines.map((line, index) => {
+  const mappingLineChartData = (line, index) => {
     return {
       id: line.id,
       data: line.data.map(d => ({ x: d.x, y: d.y, label: d.x_label }))
     };
-  })
+  }
+
+  const lineChartDataOfIssueMonth = issueByMonthData.lines.map(mappingLineChartData);
+
+  const lineChartDataOfIssueWeek = issueByWeekData.lines.map(mappingLineChartData);
+
+  const tableDataOfKeywordRank = {
+    title: keywordRankData.title,
+    description: keywordRankData.description,
+    head: [{ name: '순위' }, { name: 'Keyword' }, { name: '등장횟수' }],
+    rows: keywordRankData.data.map((item, index) => {
+      const row = [{ name: `${index + 1}` }];
+      row.push({ name: item.x });
+      row.push({ name: `${item.y}` });
+      return row;
+    }),
+  };
+
+  const tableDataOfKeywordRelated = {
+    title: keywordRankRelatedData.title,
+    description: keywordRankRelatedData.description,
+    head: [{ name: 'Keyword' }, { name: '연관 Keyword 1' }, { name: '연관 Keyword 2' }, { name: '연관 Keyword 3' }],
+    rows: Object.entries(keywordRankRelatedData.data).map(([ key, values ], index) => {
+      const row = [{ name: key }];
+      row.push({ name: values[0].keyword });
+      row.push({ name: values[1].keyword });
+      row.push({ name: values[2].keyword });
+      return row;
+    }),
+  };
+
+  const tableDataOfMeaningfulKeyword = {
+    title: meaningfulKeywordData.title,
+    description: meaningfulKeywordData.description,
+    head: [{ name: 'Issue' }, { name: 'Top 1' }, { name: 'Top 2' }, { name: 'Top 3' }],
+    rows: meaningfulKeywordData.data.map((item) => {
+      const row = [{ name: item.x }];
+      for (let i = 0; i < 3; i ++) {
+        row.push({ name: item.y.length > i ? item.y[i] : '' })
+      }
+      return row;
+    }),
+  };
+
+  const tableDataOfRisingKeyword = {
+    title: risingKeywordData.title,
+    description: risingKeywordData.description,
+    head: [{ name: 'Date' }, { name: 'Top 1' }, { name: 'Top 2' }, { name: 'Top 3' }],
+    rows: risingKeywordData.data.map((item) => {
+      const row = [{ name: item.x }];
+      for (let i = 0; i < 3; i ++) {
+        row.push({ name: item.y.length > i ? item.y[i] : '' })
+      }
+      return row;
+    }),
+  };
 
   return (
     <>
@@ -77,11 +110,11 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
         <div className="paper-wrapper">
           <Paper>
             <div className="contents-container">
-              <Typography variant="h4">{keywordByMonthData.title}</Typography>
-              <Typography variant="subtitle1">{keywordByMonthData.description}</Typography>
-              <div className="chart-wrapper">
+              <Typography variant="h4">{issueByMonthData.title}</Typography>
+              <Typography variant="subtitle1">{issueByMonthData.description}</Typography>
+              <div className="chart-wrapper fixed-height">
                 <LineChart
-                  data={lineChartDataOfKeywordMonth}
+                  data={lineChartDataOfIssueMonth}
                 />
               </div>
             </div>
@@ -90,11 +123,80 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
         <div className="paper-wrapper">
           <Paper>
             <div className="contents-container">
+              <Typography variant="h4">{issueByWeekData.title}</Typography>
+              <Typography variant="subtitle1">{issueByWeekData.description}</Typography>
+              <div className="chart-wrapper fixed-height">
+                <LineChart
+                  data={lineChartDataOfIssueWeek}
+                />
+              </div>
+            </div>
+          </Paper>
+        </div>
+        <div className="paper-wrapper">
+          <Paper>
+            <div className="contents-container">
+              <Typography variant="h4">{tableDataOfKeywordRank.title}</Typography>
+              <Typography variant="subtitle1">{tableDataOfKeywordRank.description}</Typography>
+              <div className="chart-wrapper">
+              <TableChart
+                  head={tableDataOfKeywordRank.head}
+                  rows={tableDataOfKeywordRank.rows}
+                />
+              </div>
+            </div>
+          </Paper>
+        </div>
+        <div className="paper-wrapper">
+          <Paper>
+            <div className="contents-container">
+              <Typography variant="h4">{tableDataOfKeywordRelated.title}</Typography>
+              <Typography variant="subtitle1">{tableDataOfKeywordRelated.description}</Typography>
+              <div className="chart-wrapper">
+              <TableChart
+                  head={tableDataOfKeywordRelated.head}
+                  rows={tableDataOfKeywordRelated.rows}
+                />
+              </div>
+            </div>
+          </Paper>
+        </div>
+        {/* <div className="paper-wrapper">
+          <Paper>
+            <div className="contents-container">
               <Typography variant="h4">{keywordRankData.title}</Typography>
               <Typography variant="subtitle1">{keywordRankData.description}</Typography>
-              <div className="chart-wrapper">
+              <div className="chart-wrapper fixed-height">
                 <PieChart
                   data={pieChartDataOfKeywordRank}
+                />
+              </div>
+            </div>
+          </Paper>
+        </div> */}
+        <div className="paper-wrapper">
+          <Paper>
+            <div className="contents-container">
+              <Typography variant="h4">{tableDataOfRisingKeyword.title}</Typography>
+              <Typography variant="subtitle1">{tableDataOfRisingKeyword.description}</Typography>
+              <div className="chart-wrapper">
+                <TableChart
+                  head={tableDataOfRisingKeyword.head}
+                  rows={tableDataOfRisingKeyword.rows}
+                />
+              </div>
+            </div>
+          </Paper>
+        </div>
+        <div className="paper-wrapper">
+          <Paper>
+            <div className="contents-container">
+              <Typography variant="h4">{tableDataOfMeaningfulKeyword.title}</Typography>
+              <Typography variant="subtitle1">{tableDataOfMeaningfulKeyword.description}</Typography>
+              <div className="chart-wrapper">
+                <TableChart
+                  head={tableDataOfMeaningfulKeyword.head}
+                  rows={tableDataOfMeaningfulKeyword.rows}
                 />
               </div>
             </div>
