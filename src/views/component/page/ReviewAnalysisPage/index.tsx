@@ -62,14 +62,12 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
     data: [],
   }];
 
-  const lineChartDataOfKeywordMonth = keywordByMonthData.data.reduce((acc, cur) => {
-    acc[0].data.push({ x: cur.x, y: cur.y0, label: cur.x_lable });
-    acc[1].data.push({ x: cur.x, y: cur.y1, label: cur.x_lable });
-    acc[2].data.push({ x: cur.x, y: cur.y2, label: cur.x_lable });
-    acc[3].data.push({ x: cur.x, y: cur.y3, label: cur.x_lable });
-    acc[4].data.push({ x: cur.x, y: cur.y4, label: cur.x_lable });
-    return acc;
-  }, initialLineDataOfKeywordMonth);
+  const lineChartDataOfKeywordMonth = keywordByMonthData.lines.map((line, index) => {
+    return {
+      id: line.id,
+      data: line.data.map(d => ({ x: d.x, y: d.y, label: d.x_label }))
+    };
+  })
 
   return (
     <>
