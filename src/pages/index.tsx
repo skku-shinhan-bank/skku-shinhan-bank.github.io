@@ -33,7 +33,12 @@ const IndexRoute = () => {
     };
 
     try {
-      newChatting = await registerReview(newReview);
+      const review = await registerReview(newReview);
+      newChatting = {
+        review: review.review,
+        comment: `[Issue Id] ${review.issueId}\n\n[Comment]\n${review.comment}`,
+        writeTime: review.writeTime,
+      }
     } catch (error) {
       console.error(error);
     }

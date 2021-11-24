@@ -53,7 +53,7 @@ const ReviewChat: FunctionComponent<Props> = ({
           <Avatar className={classes.secondary} />
         </div>
         <div className="comment">
-          <Typography style={{ color: '#333333', fontSize: '14px' }}>
+          <Typography style={{ color: '#333333', fontSize: '14px', whiteSpace: 'pre-line' }}>
             {comment}
           </Typography>
         </div>

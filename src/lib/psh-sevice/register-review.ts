@@ -6,6 +6,7 @@ interface ResponseBody {
   comment: string;
   review: string;
   write_time: string;
+  issue_id: number;
   total_issue_info: number[];
 }
 
@@ -26,6 +27,7 @@ export const registerReview = async (review: string): Promise<Chatting> => {
   return {
     review: body.review,
     comment: body.comment,
-    writeTime: body.write_time
+    writeTime: body.write_time,
+    issueId: body.issue_id,
   };
 };
