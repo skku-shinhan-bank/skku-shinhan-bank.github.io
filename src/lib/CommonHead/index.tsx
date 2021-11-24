@@ -19,6 +19,10 @@ const CommonHead: FunctionComponent<Props> = ({
       titleTemplate={`%s`}
       meta={[
         {
+          httpEquiv: "Content-Security-Policy",
+          content: "upgrade-insecure-requests",
+        },
+        {
           name: `description`,
           content: description,
         },
