@@ -76,7 +76,6 @@ const IndexRoute = () => {
 }
 
 function getIssueName(issueId: number) {
-  console.log(issueId)
   if (issueId == 0) return '앱 실행';
   if (issueId == 1) return '로그인';
   if (issueId == 2) return '회원가입';
