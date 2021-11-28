@@ -1,6 +1,7 @@
 export interface Chatting {
   review: string;
-  comment: string;
+  comments: string[];
   writeTime: string;
   issueId: number;
+  totalIssueInfo: number[];
 }

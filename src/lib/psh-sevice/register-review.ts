@@ -3,7 +3,7 @@ import { Chatting } from '../model/ReviewChat';
 import { getPSHHost } from '../util';
 
 interface ResponseBody {
-  comment: string;
+  comments: string[];
   review: string;
   write_time: string;
   issue_id: number;
@@ -11,7 +11,7 @@ interface ResponseBody {
 }
 
 export const registerReview = async (review: string): Promise<Chatting> => {
-  const url = `${getPSHHost()}/reviews`;
+  const url = `${getPSHHost()}/review/comments`;
 
   const { status, body } = await RequestSender.sendPostRequest<ResponseBody>({
     url,
@@ -26,8 +26,9 @@ export const registerReview = async (review: string): Promise<Chatting> => {
 
   return {
     review: body.review,
-    comment: body.comment,
+    comments: body.comments,
     writeTime: body.write_time,
     issueId: body.issue_id,
+    totalIssueInfo: body.total_issue_info,
   };
 };

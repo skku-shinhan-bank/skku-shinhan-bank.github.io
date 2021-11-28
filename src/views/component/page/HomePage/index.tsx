@@ -15,8 +15,10 @@ interface Props {
   onChangeInput: (event: ChangeEvent) => void;
   chatting: {
     review: string;
-    comment: string;
+    comments: string[];
     writeTime: string;
+    issueName: string;
+    totalIssueInfo: number[];
   }[];
   onClickSendButton: () => void;
   isInputDisabled?: boolean;
@@ -68,13 +70,15 @@ const HomePage: FunctionComponent<Props> = ({
         }
         <div className="chat-container">
           {
-            chatting.map((chat) => (
-              <div className="chat-wrapper">
+            chatting.map((chat, index) => (
+              <div className="chat-wrapper" key={index}>
                 <div className="review">
                   <ReviewChat
                     review={chat.review}
-                    comment={chat.comment}
+                    comments={chat.comments}
                     time={chat.writeTime}
+                    issueName={chat.issueName}
+                    totalIssueInfo={chat.totalIssueInfo}
                   />
                 </div>
               </div>
