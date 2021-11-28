@@ -20,8 +20,8 @@ const TableChart: FunctionComponent<Props> = ({
     head, rows
 }) => {
     return (
-        <TableContainer component={Paper}>
-            <Table style={{ minWidth: 650 }} aria-label="simple table">
+        <TableContainer component={Paper} style={{ maxHeight: '440px' }}>
+            <Table style={{ minWidth: 650 }} aria-label="simple table" stickyHeader={true}>
                 <TableHead>
                 <TableRow>
                     {head.map((cell, index) => (

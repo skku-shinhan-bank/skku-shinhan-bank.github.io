@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 
 import CommonAppBar from '../../../../lib/CommonAppBar';
 
@@ -29,11 +29,17 @@ import { issueByWeekData } from '../../../../lib/data/issue-by-week';
 import { meaningfulKeywordData } from '../../../../lib/data/meaningful-keyword';
 import { risingKeywordData } from '../../../../lib/data/rising-keyword';
 
-import { Typography } from '@material-ui/core';
+import { Switch, Typography } from '@material-ui/core';
 import TableChart from '../../chart/TableChart';
 import { keywordRankRelatedData } from '../../../../lib/data/keyword-related';
 
 const ReviewsAnalysisPage: FunctionComponent = () => {
+  const [isMonth, setIsMonth] = useState(false);
+
+  const handleChange = (event) => {
+    setIsMonth(event.target.checked);
+  };
+
   const pieChartDataOfKeywordRank = keywordRankData.data.map((data) => ({
     id: data.x,
     label: data.x,
@@ -107,32 +113,53 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
     <CommonAppBar />
     <main className="reviews-analysis-page-comp">
       <div className="center-page-content">
-        <div className="paper-wrapper">
-          <Paper>
-            <div className="contents-container">
-              <Typography variant="h4">{issueByMonthData.title}</Typography>
-              <Typography variant="subtitle1">{issueByMonthData.description}</Typography>
-              <div className="chart-wrapper fixed-height">
-                <LineChart
-                  data={lineChartDataOfIssueMonth}
-                />
+        <Typography variant="h3" style={{ marginBottom: '20px', marginTop: '20px' }}>리뷰 분석</Typography>
+        <Typography variant="h4" style={{ marginBottom: '20px' }}>Issue</Typography>
+        <div className="issue-container">
+          <div className="paper-wrapper issue-line-graph-page-wrapper">
+            <Paper>
+              <div className="contents-container">
+                <div className="header">
+                  <Switch color="primary" onChange={handleChange}/>
+                  <Typography variant="h4">
+                    {isMonth ? issueByMonthData.title : issueByWeekData.title}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    {isMonth ? issueByMonthData.description : issueByWeekData.description}
+                  </Typography>
+                </div>
+                {isMonth?
+                  <div className="chart-wrapper fixed-height">
+                    <LineChart
+                      data={lineChartDataOfIssueMonth}
+                    />
+                  </div>
+                  :
+                  <div className="chart-wrapper fixed-height">
+                    <LineChart
+                      data={lineChartDataOfIssueWeek}
+                    />
+                  </div>
+                }
               </div>
-            </div>
-          </Paper>
-        </div>
-        <div className="paper-wrapper">
-          <Paper>
-            <div className="contents-container">
-              <Typography variant="h4">{issueByWeekData.title}</Typography>
-              <Typography variant="subtitle1">{issueByWeekData.description}</Typography>
-              <div className="chart-wrapper fixed-height">
-                <LineChart
-                  data={lineChartDataOfIssueWeek}
-                />
+            </Paper>
+          </div>
+          <div className="paper-wrapper">
+            <Paper>
+              <div className="contents-container">
+                <Typography variant="h4">{tableDataOfMeaningfulKeyword.title}</Typography>
+                <Typography variant="subtitle1">{tableDataOfMeaningfulKeyword.description}</Typography>
+                <div className="chart-wrapper">
+                  <TableChart
+                    head={tableDataOfMeaningfulKeyword.head}
+                    rows={tableDataOfMeaningfulKeyword.rows}
+                  />
+                </div>
               </div>
-            </div>
-          </Paper>
+            </Paper>
+          </div>
         </div>
+        <Typography variant="h4" style={{ marginBottom: '20px', marginTop: '40px' }}>Keyword</Typography>
         <div className="paper-wrapper">
           <Paper>
             <div className="contents-container">
@@ -183,20 +210,6 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
                 <TableChart
                   head={tableDataOfRisingKeyword.head}
                   rows={tableDataOfRisingKeyword.rows}
-                />
-              </div>
-            </div>
-          </Paper>
-        </div>
-        <div className="paper-wrapper">
-          <Paper>
-            <div className="contents-container">
-              <Typography variant="h4">{tableDataOfMeaningfulKeyword.title}</Typography>
-              <Typography variant="subtitle1">{tableDataOfMeaningfulKeyword.description}</Typography>
-              <div className="chart-wrapper">
-                <TableChart
-                  head={tableDataOfMeaningfulKeyword.head}
-                  rows={tableDataOfMeaningfulKeyword.rows}
                 />
               </div>
             </div>

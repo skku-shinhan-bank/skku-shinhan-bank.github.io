@@ -32,41 +32,27 @@ const LineChart: FunctionComponent<Props> = ({ data /* see data tab */ }) => (
         //     legend: '',
         //     legendOffset: 0
         // }}
-        // axisBottom={{
-        //     tickValues: [
-        //         0,
-        //         20,
-        //         40,
-        //         60,
-        //         80,
-        //         100,
-        //         120
-        //     ],
-        //     tickSize: 5,
-        //     tickPadding: 5,
-        //     tickRotation: 0,
-        //     format: '.2f',
-        //     legend: 'price',
-        //     legendOffset: 36,
-        //     legendPosition: 'middle'
-        // }}
-        // axisLeft={{
-        //     tickValues: [
-        //         0,
-        //         500,
-        //         1000,
-        //         1500,
-        //         2000,
-        //         2500
-        //     ],
-        //     tickSize: 5,
-        //     tickPadding: 5,
-        //     tickRotation: 0,
-        //     format: '.2s',
-        //     legend: 'volume',
-        //     legendOffset: -40,
-        //     legendPosition: 'middle'
-        // }}
+        axisBottom={{
+            tickValues: [
+                0,
+                20,
+                40,
+                60,
+                80,
+            ],
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            format: '.2f',
+            legend: '날짜',
+            legendOffset: 36,
+            legendPosition: 'middle'
+        }}
+        axisLeft={{
+            legend: '리뷰 등장 횟수',
+            legendOffset: -40,
+            legendPosition: 'middle'
+        }}
         enableGridX={false}
         colors={{ scheme: 'spectral' }}
         lineWidth={1}
