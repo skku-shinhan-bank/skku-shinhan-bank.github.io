@@ -114,7 +114,7 @@ const ReviewsAnalysisPage: FunctionComponent = () => {
     <main className="reviews-analysis-page-comp">
       <div className="center-page-content">
         <Typography variant="h3" style={{ marginBottom: '20px', marginTop: '20px' }}>리뷰 분석</Typography>
-        <Typography variant="h4" style={{ marginBottom: '20px' }}>Issue</Typography>
+        <Typography variant="h4" style={{ marginBottom: '20px' }}>이슈 변화 추이 분석</Typography>
         <div className="issue-container">
           <div className="paper-wrapper issue-line-graph-page-wrapper">
             <Paper>

@@ -1,6 +1,6 @@
 export const meaningfulKeywordData = {
-    "title": "이슈 별 의미있는 키워드",
-    "description":"각 이슈 별 의미있는 키워드",
+    "title": "이슈별 주요 키워드 분석",
+    "description":"각 이슈별 상위 고빈도 키워드 Top-3를 추출하여 제공합니다.",
     "data": [
         {
             "x": "실행",

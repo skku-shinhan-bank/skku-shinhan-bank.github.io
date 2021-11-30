@@ -1,6 +1,6 @@
 export const issueByWeekData = {	
-	"title": "주 별 Issue",
-	"description":"2018-11 ~ 2020-03 주 별 issue 분포도",
+	"title": "주별 이슈 변화 추이",
+	"description":"2018-11 ~ 2020-03 주별 이슈 분포도",
 	"graph_type":"꺾은선 그래프",
 	"lines": [{
 		"id":"실행기능",

@@ -1,6 +1,6 @@
 export const issueByMonthData = {	
-	"title": "월 별 Issue",
-	"description":"2018-11 ~ 2020-03 월 별 issue 분포도",
+	"title": "월별 이슈 변화 추이",
+	"description":"2018-11 ~ 2020-03 월별 이슈 분포도",
 	"graph_type":"꺾은선 그래프",
 	"lines": [
 		{
